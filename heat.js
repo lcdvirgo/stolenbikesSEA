@@ -34,8 +34,6 @@ var superInit = function(cb) {
 
 function initialize(points) {
 
-  console.log("eh", points);
-
   var mapOptions = {
     zoom: 13,
     center: new google.maps.LatLng(47.656504,-122.3351672),
@@ -45,9 +43,10 @@ function initialize(points) {
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
- for(var i = 0, x = points.length; i < x; i+=2) {
+  for(var i = 0, x = points.length; i < x; i+=2) {
    taxiData.push(new google.maps.LatLng(points[i], points[i+1]));
- }
+   new google.maps.Marker({map: map, title: "oh", position: taxiData[taxiData.length-1]});
+  }
 
   var pointArray = new google.maps.MVCArray(taxiData);
 
@@ -83,11 +82,11 @@ function changeGradient() {
 }
 
 function changeRadius() {
-  heatmap.set('radius', heatmap.get('radius') ? null : 20);
+  heatmap.set('radius', heatmap.get('radius') ? null : 100);
 }
 
 function changeOpacity() {
-  heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+  heatmap.set('opacity', heatmap.get('opacity') ? null : 0.8);
 }
 
 google.maps.event.addDomListener(window, 'load', function() {
