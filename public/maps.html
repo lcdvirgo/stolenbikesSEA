@@ -18,7 +18,7 @@
         left: 50%;
         margin-left: -180px;
         z-index: 5;
-        background-color: rgba(255,255,255,0.5);
+        background-color: none;
         padding: 8px;
         /* border: 1px solid #999; */
       }
@@ -63,14 +63,21 @@
         vertical-align: baseline;
     }
     h1 {
-display: block;
-font-size: 2em;
--webkit-margin-before: 0.67em;
--webkit-margin-after: 0.67em;
--webkit-margin-start: 0px;
--webkit-margin-end: 0px;
-font-weight: bold;
-}  
+        display: block;
+        font-size: 2em;
+        -webkit-margin-before: 0.67em;
+        -webkit-margin-after: 0.67em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        font-weight: bold;
+    }  
+    #panel > button:nth-child(1), #panel > button:nth-child(2), #panel > button:nth-child(3), #panel > button:nth-child(4) {
+        color: #fff;
+        background-color: rgba(255,255,255,0.1);
+        border-color: #ffffff;
+        padding: 10px 20px;
+        border-radius: 6px;
+    }
 </style>        
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=visualization"></script>
     <script>
