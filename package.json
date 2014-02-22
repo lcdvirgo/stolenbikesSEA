@@ -1,0 +1,25 @@
+{
+  "name": "stolenbikesSEA",
+  "version": "0.0.0",
+  "description": "stolenbikesSEA ==============",
+  "main": "server.js",
+  "dependencies": {
+    "express": "~3.4.8",
+    "connect": "~2.13.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lcdvirgo/stolenbikesSEA.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/lcdvirgo/stolenbikesSEA/issues"
+  },
+  "homepage": "https://github.com/lcdvirgo/stolenbikesSEA"
+}
