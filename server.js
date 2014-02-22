@@ -21,13 +21,20 @@ var file_serving_dir = './public/';
 app.use(express.static(file_serving_dir));
 
 app.post('/api/reports', function(req, res) {
-    console.log(req.body);
-//    elasticSearchClient.index('seabike', 'dsg', req.body)
-//        .on('data', function(data) {
-//           console.log(data);
-//        })
-//        .exec();
+    elasticSearchClient.index('seabike', 'report', req.body)
+        .on('data', function(data) {
+           console.log(data);
+        })
+        .exec();
 
+});
+
+app.get('/api/reports', function(req, res) {
+    elasticSearchClient.index('seabike', 'report', req.body)
+        .on('data', function(data) {
+            console.log(data);
+        })
+        .exec();
 });
 
 app.get('/add-report', function(req, res) {
