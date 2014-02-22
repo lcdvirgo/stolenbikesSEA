@@ -10,20 +10,23 @@
         <fieldset>
             <legend>Add report</legend>
 
-            <label for='name'>Name</label>
-            <input type='text' id='name' name='business.name' placeholder='Deglassified Inc.' >
-
-            <label for='address'>Address</label>
-            <input type='text' id='address' name='business.address' placeholder='12345 Fake Street' >
+            <label for='name'>City</label>
+            <input type='text' id='city' name='city' placeholder='Seattle'>
 
             <label for='zipcode'>Zip Code</label>
-            <input type='text' id='zipcode' name='business.zipcode'>
+            <input type='text' id='zipcode' placeholder='98144' name='business.zipcode'>
+
+            <label for='details'>Year / Make / Model.</label>
+            <input type='text' placeholder='2003 / Bianchi / Eros' id='details' name='details'>
 
             <label for='serialCode'>Serial Code</label>
-            <input type='text' placeholder='Optional' id='serialCode' name='business.zipcode'>
+            <input type='text' placeholder='Optional' id='serialCode' name='serialCode'>
 
-            <label for='serialCode'>Date </label>
-            <input type='text' placeholder='Optional' id='serialCode' name='business.zipcode'>
+            <label for='serialCode'>Date Range</label>
+            <input type='text' placeholder='6/3/2013' id='date' name='date'>
+
+            <label for='reward'>Date of Theft</label>
+            <input type='date' id='reward' name='reward'>
 
             <button class='button medium success' type='submit'>Submit Report</button>
         </fieldset>
