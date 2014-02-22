@@ -34,9 +34,11 @@ var superInit = function(cb) {
 
 function initialize(points) {
 
+  console.log("eh", points);
+
   var mapOptions = {
     zoom: 13,
-    center: new google.maps.LatLng(37.774546, -122.433523),
+    center: new google.maps.LatLng(47.656504,-122.3351672),
     mapTypeId: google.maps.MapTypeId.SATELLITE
   };
 
