@@ -47,6 +47,41 @@ function initialize(points) {
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
+function msToDHM(v) {
+  var days = v / 8.64e7 | 0;
+  var hrs  = (v % 8.64e7)/ 3.6e6 | 0;
+  var mins = Math.round((v % 3.6e6) / 6e4);
+  if(days < 1 && hours < 1) return '';
+
+  var out = [];
+  out.push("<br>Reported after: ");
+  if(days > 0) out.push(days + " days");
+  if(hrs > 0) out.push(hrs + " hours");
+  return out.join(' ');
+
+  return days + ':' + z(hrs) + ':' + z(mins);
+
+  function z(n){return (n<10?'0':'')+n;}
+}
+
+  var html = function(entry) {
+	var id = entry.rms_cdw_id;
+	var time = entry.occurred_date_or_date_range_start;
+	if(entry.occurred_date_range_end) time += " - " + entry.occurred_date_range_end;
+
+	var loc = entry.hundred_block_location;
+	var html = [
+		"Case: ", id, "<br>",
+		"Time: ", time, "<br>",
+		"Loc: ", loc
+	];
+	var reported = entry.date_reported;
+	var lag = Date.parse(entry.occurred_date_range_end || entry.occurred_date_or_date_range_start);
+	lag = +Date.parse(reported) - (+lag) ;
+	lag = msToDHM(lag);
+	html.push(lag);
+	return '<div id="sel">'+html.join('')+'</div>';
+  };
 
   for(var i = 0, x = points.length, offset = 0; i < x; i+=2) {
    var entry = bikeRecords[offset];
@@ -56,15 +91,21 @@ function initialize(points) {
    var marker = new google.maps.Marker({map: map, title: entry.date_reported, position: bikePointData[bikePointData.length-1]});
    (function(marker,entry) { 
     google.maps.event.addListener(marker, "click", function() {
+		var iwin;
+		if(entry.iwin) iwin = entry.iwin;
+		else iwin = new google.maps.InfoWindow({content: html(entry)});
 	    // marker.setMap(null);
 	    if(entry.hasSelection) {
 		marker.setIcon(null);
 		entry.hasSelection = false;
+		iwin.close();
 	    }
 	    else {
 		entry.hasSelection = true;
 		marker.setIcon('stolen-small.png');
 	        console.log("thing", entry);
+		iwin.open(map, marker);
+
 	    }
     });
    })(marker,entry);
