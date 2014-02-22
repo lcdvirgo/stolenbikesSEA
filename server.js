@@ -4,7 +4,7 @@ var express = require('express'),
     ElastiSearchClient = require('elasticsearchclient');
 
 
-var port = 3000;
+var port = 80;
 
 var app = express();
 app.use(express.bodyParser()); // Look up warning

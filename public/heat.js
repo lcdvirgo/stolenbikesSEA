@@ -63,7 +63,7 @@ function initialize(points) {
 	    }
 	    else {
 		entry.hasSelection = true;
-		marker.setIcon('Machovka_bike.png');
+		marker.setIcon('stolen-small.png');
 	        console.log("thing", entry);
 	    }
     });
