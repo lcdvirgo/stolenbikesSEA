@@ -1,8 +1,15 @@
 var express = require('express'),
     http = require('http'),
     path = require('path'),
-    ElastiSearchClient = require('elasticsearchclient');
+    ElasticSearchClient = require('elasticsearchclient');
 
+var serverOptions = {
+    host: '107.170.73.13',
+//    host: 'localhost',
+    port: 9200
+};
+
+var elasticSearchClient = new ElasticSearchClient(serverOptions);
 
 var port = 3000;
 
@@ -15,6 +22,11 @@ app.use(express.static(file_serving_dir));
 
 app.post('/api/reports', function(req, res) {
     console.log(req.body);
+//    elasticSearchClient.index('seabike', 'dsg', req.body)
+//        .on('data', function(data) {
+//           console.log(data);
+//        })
+//        .exec();
 
 });
 
