@@ -11,7 +11,7 @@ var serverOptions = {
 
 var elasticSearchClient = new ElasticSearchClient(serverOptions);
 
-var port = 3000;
+var port = 80;
 
 var app = express();
 app.use(express.bodyParser()); // Look up warning
