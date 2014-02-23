@@ -1,6 +1,7 @@
 var express = require('express'),
     http = require('http'),
     path = require('path'),
+    Geocodio = require('geocodio'),
     ElasticSearchClient = require('elasticsearchclient');
 
 var serverOptions = {
@@ -9,9 +10,11 @@ var serverOptions = {
     port: 9200
 };
 
+var geocodio = new Geocodio({ api_key: '667915937c113a907395335035a501656590a79'});
+
 var elasticSearchClient = new ElasticSearchClient(serverOptions);
 
-var port = 80;
+var port = 3000;
 
 var app = express();
 app.use(express.bodyParser()); // Look up warning
@@ -21,18 +24,28 @@ var file_serving_dir = './public/';
 app.use(express.static(file_serving_dir));
 
 app.post('/api/reports', function(req, res) {
-    elasticSearchClient.index('seabike', 'report', req.body)
-        .on('data', function(data) {
-           console.log(data);
-        })
-        .exec();
+    var reportData = req.body;
+    geocodio.geocode(req.body.address, function(err, response) {
+        if (!err) {
+            var geoCordinates = response.results[0].response.results[0].location;
+            reportData.latitude = geoCordinates.lat;
+            reportData.longitude = geoCordinates.lng;
+        }
+        elasticSearchClient.index('seabike', 'report', req.body)
+            .on('data', function(data) {
+                console.log(data);
+                return res.send('Report added!');
+            })
+            .exec();
+    });
+
 
 });
 
-app.get('/api/reports', function(req, res) {
-    elasticSearchClient.index('seabike', 'report', req.body)
+app.get('/api/dsg', function(req, res) {
+    elasticSearchClient.search('seabike', 'dsg', {})
         .on('data', function(data) {
-            console.log(data);
+            return res.send(JSON.parse(data));
         })
         .exec();
 });
