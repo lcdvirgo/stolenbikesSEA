@@ -32,7 +32,7 @@
         left: 0;
         width: 100%;
         background-color: rgba(255,255,255,0);
-        z-index: 2000;
+        z-index: 1;
         -webkit-backface-visibility: hidden;
         -moz-backface-visibility: hidden;
         -ms-backface-visibility: hidden;
@@ -73,7 +73,12 @@
         border-color: #ffffff;
         padding: 10px 20px;
         border-radius: 6px;
+        margin-top:30px;
     }
+    a {
+        color: #ffffff;
+        text-decoration: none;
+    }    
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=visualization"></script>
 	<script src="heat.js"></script>
@@ -90,9 +95,9 @@
       <button onclick="changeRadius()">Change radius</button>
       <button onclick="changeOpacity()">Change opacity</button>
 -->
-<a target="_blank" href="http://www.stolenbicycleregistry.com/listbikes.php?showby=city&city=Seattle&state=WA">Registry</a>
-<a target="_blank" href="https://twitter.com/stolenbikessea">Twitter</a>
-<a target="_blank" href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f?">SeaGov</a>
+        <button><a target="_blank" href="http://www.stolenbicycleregistry.com/listbikes.php?showby=city&city=Seattle&state=WA" class="button">Registry</a></button>
+        <button>Twitter</a></button>
+        <button><a target="_blank" href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f?">SeaGov</a></button>
     </div>
     <div id="map-canvas"></div>
   </body>
