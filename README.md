@@ -1,7 +1,8 @@
 stolenbikesSEA
 ==============
 
-Maps + Local Stolen Bicycles
+Maps + Local Stolen Bicycles  
+
 Stolen Bikes Seattle is an alternative solution to visualize stolen bikes data based on https://data.seattle.gov. The website intends not only to help local citizens to identify which are the critical areas where most bicycles get stolen, but also to make the stolen bike data and registry more transparent.  
 
 
