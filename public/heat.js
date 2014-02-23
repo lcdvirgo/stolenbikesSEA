@@ -90,6 +90,7 @@ function msToDHM(v) {
    // NOTES: Heavy but we only have a few thousand points.
    var marker = new google.maps.Marker({map: map, title: entry.date_reported, position: bikePointData[bikePointData.length-1]});
    (function(marker,entry) { 
+    marker.setIcon('stolen-small.png');
     var select = function() {
 	var iwin;
 	if(entry.iwin) iwin = entry.iwin;
@@ -99,14 +100,14 @@ function msToDHM(v) {
 	}
 	    // marker.setMap(null);
 	    if(entry.hasSelection) {
-		marker.setIcon('stolen-small.png');
+		//marker.setIcon(null);
 		entry.hasSelection = false;
 		iwin.close();
 	    }
 	    else {
 		entry.hasSelection = true;
-		marker.setIcon(null);
-	        console.log("thing", entry);
+		//marker.setIcon('stolen-small.png');
+	        //console.log("thing", entry);
 		iwin.open(map, marker);
 
 	    }
