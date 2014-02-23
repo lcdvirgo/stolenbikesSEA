@@ -51,7 +51,7 @@ function msToDHM(v) {
   var days = v / 8.64e7 | 0;
   var hrs  = (v % 8.64e7)/ 3.6e6 | 0;
   var mins = Math.round((v % 3.6e6) / 6e4);
-  if(days < 1 && hours < 1) return '';
+  if(days < 1 && hrs < 1) return '';
 
   var out = [];
   out.push("<br>Reported after: ");
@@ -90,24 +90,29 @@ function msToDHM(v) {
    // NOTES: Heavy but we only have a few thousand points.
    var marker = new google.maps.Marker({map: map, title: entry.date_reported, position: bikePointData[bikePointData.length-1]});
    (function(marker,entry) { 
-    google.maps.event.addListener(marker, "click", function() {
-		var iwin;
-		if(entry.iwin) iwin = entry.iwin;
-		else iwin = new google.maps.InfoWindow({content: html(entry)});
+    marker.setIcon('stolen-small.png');
+    var select = function() {
+	var iwin;
+	if(entry.iwin) iwin = entry.iwin;
+	else {
+		entry.iwin = iwin = new google.maps.InfoWindow({content: html(entry)});
+		google.maps.event.addListener(iwin,'closeclick',select);
+	}
 	    // marker.setMap(null);
 	    if(entry.hasSelection) {
-		marker.setIcon(null);
+		//marker.setIcon(null);
 		entry.hasSelection = false;
 		iwin.close();
 	    }
 	    else {
 		entry.hasSelection = true;
-		marker.setIcon('stolen-small.png');
-	        console.log("thing", entry);
+		//marker.setIcon('stolen-small.png');
+	        //console.log("thing", entry);
 		iwin.open(map, marker);
 
 	    }
-    });
+    };
+    google.maps.event.addListener(marker, "click", select);
    })(marker,entry);
 
    bikeMarkerData.push(marker);
