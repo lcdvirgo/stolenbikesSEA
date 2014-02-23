@@ -33,17 +33,14 @@ app.post('/api/reports', function(req, res) {
         }
         elasticSearchClient.index('seabike', 'report', req.body)
             .on('data', function(data) {
-                console.log(data);
                 return res.send('Report added!');
             })
             .exec();
     });
-
-
 });
 
-app.get('/api/dsg', function(req, res) {
-    elasticSearchClient.search('seabike', 'dsg', {})
+app.get('/api/reports', function(req, res) {
+    elasticSearchClient.search('seabike', '', { size: 2000 })
         .on('data', function(data) {
             return res.send(JSON.parse(data));
         })
