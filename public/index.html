@@ -2,7 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Heatmaps</title>
+    <title>Stolen Bikes Seattle</title>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,200,700,600,900' rel='stylesheet' type='text/css'>  
     <style>
       html, body, #map-canvas {
         height: 100%;
@@ -32,7 +33,7 @@
         left: 0;
         width: 100%;
         background-color: rgba(255,255,255,0);
-        z-index: 2000;
+        z-index: 1;
         -webkit-backface-visibility: hidden;
         -moz-backface-visibility: hidden;
         -ms-backface-visibility: hidden;
@@ -73,14 +74,27 @@
         border-color: #ffffff;
         padding: 10px 20px;
         border-radius: 6px;
+        margin-top:30px;
     }
+    a {
+        color: #ffffff;
+        text-decoration: none;
+    }    
     </style>
+
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=visualization"></script>
 	<script src="heat.js"></script>
 	<script src="jquery.js"></script>
 	<script src="fastclick.js"></script>
 	<script src="modernizr.js"></script>
 	<script src="foundation.min.js"></script>
+
+      <script>
+          function openModal() {
+              $('#addForm').trigger('click');
+          }
+      </script>
+
   <link rel="stylesheet" type="text/css" href="foundation.min.css">
   </head>
   <body>
@@ -89,51 +103,50 @@
         <h1><img src="logo.png" style="width:40px; height:auto;">Stolen Bikes Seattle</h1>
     </header>  
     <div id="panel">
-<!--
-      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
-      <button onclick="changeGradient()">Change gradient</button>
-      <button onclick="changeRadius()">Change radius</button>
-      <button onclick="changeOpacity()">Change opacity</button>
--->
-<a >Add Report</a>
-<a target="_blank" href="http://www.stolenbicycleregistry.com/listbikes.php?showby=city&city=Seattle&state=WA">Registry</a>
-<a target="_blank" href="https://twitter.com/stolenbikessea">Twitter</a>
-<a target="_blank" href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f?">SeaGov</a>
+
+        <button><a target="_blank" href="http://www.stolenbicycleregistry.com/listbikes.php?showby=city&city=Seattle&state=WA" class="button">Registry</a></button>
+        <button>Twitter</a></button>
+        <a data-reveal data-reveal-id='addReportModal'>Add Form</a>
+        <button><a target="_blank" href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f?">SeaGov</a></button>
+
     </div>
+
     <div id="map-canvas"></div>
 
-  <div id='addReportModal' class='reveal-modal' data-reveal>
-      <form action='/api/reports' method='post'>
-          <div class='row'>
-              <fieldset>
-                  <legend>Add report</legend>
+      <div id='addReportModal' class='reveal-modal' data-reveal>
+          <form action='/api/reports' method='post'>
+              <div class='row'>
+                  <fieldset>
+                      <legend>Add report</legend>
 
-                  <label for='address'>Address</label>
-                  <input type='text' id='address' placeholder='One Embarcadero Center, 9th Floor, San Francisco, CA 94111' name='address' required>
+                      <label for='address'>Address</label>
+                      <input type='text' id='address' placeholder='One Embarcadero Center, 9th Floor, San Francisco, CA 94111' name='address' required>
 
-                  <label for='details'>Year / Make / Model.</label>
-                  <input type='text' placeholder='2003 / Bianchi / Eros' id='details' name='details' required>
+                      <label for='details'>Year / Make / Model.</label>
+                      <input type='text' placeholder='2003 / Bianchi / Eros' id='details' name='details' required>
 
-                  <label for='serialCode'>Serial Code</label>
-                  <input type='text' placeholder='Optional' id='serialCode' name='serialCode'>
+                      <label for='serialCode'>Serial Code</label>
+                      <input type='text' placeholder='Optional' id='serialCode' name='serialCode'>
 
-                  <label for='serialCode'>Date Range</label>
-                  <input type='text' placeholder='6/3/2013' id='date' name='date' required>
+                      <label for='serialCode'>Date Range</label>
+                      <input type='text' placeholder='6/3/2013' id='date' name='date' required>
 
-                  <label for='reward'>Date of Theft</label>
-                  <input type='date' id='reward' name='reward' required>
+                      <label for='reward'>Date of Theft</label>
+                      <input type='date' id='reward' name='reward' required>
 
-                  <label for='picture'>Add a Picture</label>
-                  <input type='file' id='picture' name='picture' required>
+                      <label for='picture'>Add a Picture</label>
+                      <input type='file' id='picture' name='picture' required>
 
-                  <button class='button medium success' type='submit'>Submit Report</button>
-              </fieldset>
-          </div>
-      </form>
-      <a class="close-reveal-modal">&#215;</a>
-  </div>
+                      <button class='button medium success' type='submit'>Submit Report</button>
+                  </fieldset>
+              </div>
+          </form>
+          <a class="close-reveal-modal">&#215;</a>
+      </div>
 
-
+    <script type="text/javascript">
+        $(document).foundation();
+    </script>
   </body>
 </html>
 
