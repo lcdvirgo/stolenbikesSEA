@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Stolen Bikes Seattle</title>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,200,700,600,900' rel='stylesheet' type='text/css'>  
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,200,700,600,900' rel='stylesheet' type='text/css'>
+
+      <link rel="stylesheet" type="text/css" href="foundation.min.css">
     <style>
       html, body, #map-canvas {
         height: 100%;
@@ -68,10 +70,10 @@
         -webkit-margin-end: 0px;
         font-weight: bold;
     }  
-    #panel > button:nth-child(1), #panel > button:nth-child(2), #panel > button:nth-child(3), #panel > button:nth-child(4) {
+    #panel button {
         color: #fff;
         background-color: rgba(255,255,255,0.1);
-        border-color: #ffffff;
+        border: 1px solid #ffffff;
         padding: 10px 20px;
         border-radius: 6px;
         margin-top:30px;
@@ -95,20 +97,21 @@
           }
       </script>
 
-  <link rel="stylesheet" type="text/css" href="foundation.min.css">
+
   </head>
   <body>
     <header class="main-navigation" id="site-header"><hgroup id="logo">
-        
         <h1><img src="logo.png" style="width:40px; height:auto;">Stolen Bikes Seattle</h1>
     </header>  
     <div id="panel">
 
-        <button><a target="_blank" href="http://www.stolenbicycleregistry.com/listbikes.php?showby=city&city=Seattle&state=WA" class="button">Registry</a></button>
-        <button>Twitter</a></button>
-        <a data-reveal data-reveal-id='addReportModal'>Add Form</a>
+        <button><a target="_blank" href="http://www.stolenbicycleregistry.com/listbikes.php?showby=city&city=Seattle&state=WA" >Registry</a></button>
+        <button><a target="_blank" href="https://twitter.com/stolenbikessea">Twitter</a></button>
         <button><a target="_blank" href="https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f?">SeaGov</a></button>
-
+	<button><a target="_blank" href="http://web6.seattle.gov/mnm/policereports.aspx">Neighborhood</a></button>
+	<button><a target="_blank" href="http://www.seattle.gov/police/contact/reporting/default.htm">Police</a></button>
+	<button><a target="_blank" href="https://seattle.craigslist.org/search/?sort=rel&areaID=2&subAreaID=&query=stolen+bike&catAbb=sss">Craigslist</a></button>
+        <button data-reveal data-reveal-id='addReportModal'><a>Add Form</a></button>
     </div>
 
     <div id="map-canvas"></div>
@@ -128,14 +131,11 @@
                       <label for='serialCode'>Serial Code</label>
                       <input type='text' placeholder='Optional' id='serialCode' name='serialCode'>
 
-                      <label for='serialCode'>Date Range</label>
-                      <input type='text' placeholder='6/3/2013' id='date' name='date' required>
-
                       <label for='reward'>Date of Theft</label>
                       <input type='date' id='reward' name='reward' required>
 
                       <label for='picture'>Add a Picture</label>
-                      <input type='file' id='picture' name='picture' required>
+                      <input type='file' id='picture' name='picture'>
 
                       <button class='button medium success' type='submit'>Submit Report</button>
                   </fieldset>
