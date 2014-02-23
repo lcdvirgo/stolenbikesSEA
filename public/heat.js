@@ -99,13 +99,13 @@ function msToDHM(v) {
 	}
 	    // marker.setMap(null);
 	    if(entry.hasSelection) {
-		marker.setIcon(null);
+		marker.setIcon('stolen-small.png');
 		entry.hasSelection = false;
 		iwin.close();
 	    }
 	    else {
 		entry.hasSelection = true;
-		marker.setIcon('stolen-small.png');
+		marker.setIcon(null);
 	        console.log("thing", entry);
 		iwin.open(map, marker);
 
