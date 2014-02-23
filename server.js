@@ -14,12 +14,12 @@ var geocodio = new Geocodio({ api_key: '667915937c113a907395335035a501656590a79'
 
 var elasticSearchClient = new ElasticSearchClient(serverOptions);
 
-var port = 3000;
+var port = 3000,
+    querySizeLimit = 2000;
 
 var app = express();
 app.use(express.bodyParser()); // Look up warning
 
-//var file_serving_dir = path.join(__dirname, '/public/');
 var file_serving_dir = './public/';
 app.use(express.static(file_serving_dir));
 
@@ -40,7 +40,7 @@ app.post('/api/reports', function(req, res) {
 });
 
 app.get('/api/reports', function(req, res) {
-    elasticSearchClient.search('seabike', '', { size: 2000 })
+    elasticSearchClient.search('seabike', '', { size: querySizeLimit })
         .on('data', function(data) {
             return res.send(JSON.parse(data));
         })

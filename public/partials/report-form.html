@@ -1,0 +1,27 @@
+<form action='/api/reports' method='post'>
+    <div class='row'>
+        <fieldset>
+            <legend>Add report</legend>
+
+            <label for='address'>Address</label>
+            <input type='text' id='address' placeholder='One Embarcadero Center, 9th Floor, San Francisco, CA 94111' name='address' required>
+
+            <label for='details'>Year / Make / Model.</label>
+            <input type='text' placeholder='2003 / Bianchi / Eros' id='details' name='details' required>
+
+            <label for='serialCode'>Serial Code</label>
+            <input type='text' placeholder='Optional' id='serialCode' name='serialCode'>
+
+            <label for='serialCode'>Date Range</label>
+            <input type='text' placeholder='6/3/2013' id='date' name='date' required>
+
+            <label for='reward'>Date of Theft</label>
+            <input type='date' id='reward' name='reward' required>
+
+            <label for='picture'>Add a Picture</label>
+            <input type='file' id='picture' name='picture' required>
+
+            <button class='button medium success' type='submit'>Submit Report</button>
+        </fieldset>
+    </div>
+</form>
